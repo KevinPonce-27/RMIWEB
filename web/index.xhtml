@@ -38,24 +38,34 @@
              width: 100%; color: #ffffff; text-align: center; justify-content: center; font-size: 30px;" >Lista de usuarios</div>
              <div style="height: 30px;">
                 <h:outputLabel style="margin-right: 20px;">Usuario:</h:outputLabel>
-                
+                <h:inputText id="txtNombre"  /><br/>
             </div>
              <div style="height: 30px;">
                   <h:outputLabel style="margin-right: 20px;">Teléfono:</h:outputLabel>
+                  <h:inputText id="txtTelefono"  /><br/>
                   
             </div>
              <div style="height: 30px;">
                    <h:outputLabel style="margin-right: 20px;">Dirección:</h:outputLabel>
+                   <h:inputText id="txtDireccion" /><br/>
                    
             </div>
-            RMI
+            
            
               <div style="margin-top: 15px; margin-bottom: 15px;">
-                   <h:commandButton actionListener="#{operacion.getRegistros}" value="Usuarios"  style="display:inline-block; padding:0.3em 1.2em; margin:0 0.3em 0.3em 0; border-radius:2em; box-sizing: border-box; text-decoration:none; border-style: none ; font-weight:300; color:#FFFFFF; background-color:#4eb5f1; text-align:center; transition: all 0.2s;">
+                   <h:commandButton actionListener="#{operacion.getRegistros}" value="Leer Usuarios"  style="display:inline-block; padding:0.3em 1.2em; margin:0 0.3em 0.3em 0; border-radius:2em; box-sizing: border-box; text-decoration:none; border-style: none ; font-weight:300; color:#FFFFFF; background-color:#4eb5f1; text-align:center; transition: all 0.2s;">
                 <f:ajax execute="" render="users"/>
             </h:commandButton>
-            <h:commandButton actionListener="#{operacion.insertar()}" value="Insertar" style="display:inline-block; padding:0.3em 1.2em; margin:0 0.3em 0.3em 0; border-radius:2em; box-sizing: border-box; text-decoration:none; border-style: none ; font-weight:300; color:#FFFFFF; background-color:#4eb5f1; text-align:center; transition: all 0.2s;">
+            <h:commandButton actionListener="#{operacion.insertar()}" value="Insertar Usuarios" style="display:inline-block; padding:0.3em 1.2em; margin:0 0.3em 0.3em 0; border-radius:2em; box-sizing: border-box; text-decoration:none; border-style: none ; font-weight:300; color:#FFFFFF; background-color:#4eb5f1; text-align:center; transition: all 0.2s;">
                 <f:ajax execute="txtNombre txtTelefono txtDireccion" render="users"/>
+            </h:commandButton>
+                  
+                  <h:commandButton actionListener="#{operacion.getRegistros}" value="Actualizar Usuario"  style="display:inline-block; padding:0.3em 1.2em; margin:0 0.3em 0.3em 0; border-radius:2em; box-sizing: border-box; text-decoration:none; border-style: none ; font-weight:300; color:#FFFFFF; background-color:#4eb5f1; text-align:center; transition: all 0.2s;">
+                <f:ajax execute="" render="users"/>
+            </h:commandButton>
+                  
+                  <h:commandButton actionListener="#{operacion.getRegistros}" value="Eliminar Usuario"  style="display:inline-block; padding:0.3em 1.2em; margin:0 0.3em 0.3em 0; border-radius:2em; box-sizing: border-box; text-decoration:none; border-style: none ; font-weight:300; color:#FFFFFF; background-color:#4eb5f1; text-align:center; transition: all 0.2s;">
+                <f:ajax execute="" render="users"/>
             </h:commandButton>
               </div>
            
