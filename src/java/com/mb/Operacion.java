@@ -39,6 +39,15 @@ public class Operacion implements Serializable {
     private String clave;
     private String email;
     private String usuarioEliminar;
+    private String usuarioEditar;
+
+    public String getUsuarioEditar() {
+        return usuarioEditar;
+    }
+
+    public void setUsuarioEditar(String usuarioEditar) {
+        this.usuarioEditar = usuarioEditar;
+    }
 
     public String getUsuarioEliminar() {
         return usuarioEliminar;
@@ -55,8 +64,10 @@ public class Operacion implements Serializable {
         stub = null;
         Registry registry;
         try {
-            registry = LocateRegistry.getRegistry("localhost", 8888);
+            String serverIP ="192.168.0.112";
+            registry = LocateRegistry.getRegistry(serverIP, 8888);
             try {
+                
                 // Looking up the registry for the remote object
                 stub = (RemoteInterface) registry.lookup("metodosRmi");
             } catch (RemoteException | NotBoundException ex) {
@@ -117,9 +128,16 @@ public class Operacion implements Serializable {
     }
 }
 
-    public void actualizar(String usuarioAActualizar, String nuevaClave, String nuevoEmail, String nuevoTelmovil) {
+     public void actualizarUsuario() {
         try {
-            stub.actualizar(usuarioAActualizar, nuevaClave, nuevoEmail, nuevoTelmovil);
+            if (usuarioEditar != null && !usuarioEditar.isEmpty()) {
+                stub.actualizar(usuarioEditar, clave, email, telmovil);
+                // Mostrar diálogo de éxito
+                RequestContext.getCurrentInstance().execute("PF('successDialog').show(); cleanFields();");
+            } else {
+                // Mostrar mensaje de error si el usuario a editar no está especificado
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Debe especificar un usuario para editar."));
+            }
         } catch (RemoteException ex) {
             Logger.getLogger(Operacion.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -204,5 +222,6 @@ public class Operacion implements Serializable {
         email = "";
         telmovil = "";
     }
+
 
 }

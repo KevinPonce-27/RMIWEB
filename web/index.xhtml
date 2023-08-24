@@ -78,6 +78,38 @@
                 <f:ajax execute="txtNombreEliminar" render="users"/>
             </h:commandButton>
 
+            <div  style=" margin: auto;display: flex ; margin-top: 50px; margin-bottom: 20px; background-color: #7401DF; border-radius: 5px; height: 50px; align-items: center; align-content: center;
+                  width: 100%; color: #ffffff; text-align: center; justify-content: center; font-size: 30px;" >Actualizar Usuario</div>
+
+            <!-- Otros elementos y secciones existentes ... -->
+
+            <div style="height: 50px;">
+                <h:outputLabel style="margin-right: 20px;">Nombre de usuario a editar:</h:outputLabel>
+                <h:inputText id="txtNombreEditar" value="#{operacion.usuarioEditar}" />
+            </div>
+            <div style="height: 30px;">
+                <h:outputLabel style="margin-right: 20px;">Nueva Clave:</h:outputLabel>
+                <h:inputText id="txtClaveEditar" value="#{operacion.clave}" />
+            </div>
+            <div style="height: 30px;">
+                <h:outputLabel style="margin-right: 20px;">Nuevo Email:</h:outputLabel>
+                <h:inputText id="txtEmailEditar" value="#{operacion.email}" /><br/>  
+            </div>
+            <div style="height: 30px;">
+                <h:outputLabel style="margin-right: 20px;">Nuevo Telefono:</h:outputLabel>
+                <h:inputText id="txtTelefonoEditar" value="#{operacion.telmovil}" /><br/>  
+            </div>
+
+            <!-- Botón para actualizar usuario -->
+            <h:commandButton actionListener="#{operacion.actualizarUsuario}" value="Actualizar Usuario" 
+                             style="display:inline-block; padding:0.3em 1.2em; margin:0 0.3em 0.3em 0; 
+                             border-radius:2em; box-sizing: border-box; text-decoration:none; 
+                             border-style: none ; font-weight:300; color:#FFFFFF; background-color:#7401DF; 
+                             text-align:center; transition: all 0.2s;">
+                <f:ajax execute="txtNombreEditar txtClaveEditar txtEmailEditar txtTelefonoEditar" render="users"/>
+            </h:commandButton>
+
+
 
 
             <div  style=" margin: auto;display: flex ; margin-top: 50px; margin-bottom: 20px; background-color: #27798F; border-radius: 5px; height: 50px; align-items: center; align-content: center;
