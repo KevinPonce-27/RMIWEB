@@ -84,6 +84,23 @@ public class Operacion implements Serializable {
             Logger.getLogger(Operacion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void eliminar(String usuarioAEliminar) {
+    try {
+        stub.eliminar(usuarioAEliminar);
+    } catch (RemoteException ex) {
+        Logger.getLogger(Operacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void actualizar(String usuarioAActualizar, String nuevaClave, String nuevoEmail, String nuevoTelmovil) {
+    try {
+        stub.actualizar(usuarioAActualizar, nuevaClave, nuevoEmail, nuevoTelmovil);
+    } catch (RemoteException ex) {
+        Logger.getLogger(Operacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 
     public void getRegistros(ActionEvent actionEvent) throws RemoteException {
         try {
@@ -101,7 +118,8 @@ public class Operacion implements Serializable {
             return null;
         }
     }
-
+    
+    
     public double getOperandoUno() {
         return operandoUno;
     }

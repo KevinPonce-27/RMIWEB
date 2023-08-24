@@ -41,53 +41,52 @@
                 <h:inputText id="txtNombre"  /><br/>
             </div>
              <div style="height: 30px;">
-                  <h:outputLabel style="margin-right: 20px;">Teléfono:</h:outputLabel>
-                  <h:inputText id="txtTelefono"  /><br/>
+                  <h:outputLabel style="margin-right: 20px;">Clave:</h:outputLabel>
+                  <h:inputText id="txtClave"  /><br/>
                   
             </div>
              <div style="height: 30px;">
-                   <h:outputLabel style="margin-right: 20px;">Dirección:</h:outputLabel>
-                   <h:inputText id="txtDireccion" /><br/>
-                   
+                   <h:outputLabel style="margin-right: 20px;">Email:</h:outputLabel>
+                   <h:inputText id="txtEmail" /><br/>  
+            </div>
+              <div style="height: 30px;">
+                   <h:outputLabel style="margin-right: 20px;">Telefono:</h:outputLabel>
+                   <h:inputText id="txtTelefono" /><br/>  
             </div>
             
            
               <div style="margin-top: 15px; margin-bottom: 15px;">
-                   <h:commandButton actionListener="#{operacion.getRegistros}" value="Leer Usuarios"  style="display:inline-block; padding:0.3em 1.2em; margin:0 0.3em 0.3em 0; border-radius:2em; box-sizing: border-box; text-decoration:none; border-style: none ; font-weight:300; color:#FFFFFF; background-color:#4eb5f1; text-align:center; transition: all 0.2s;">
+                  <h:commandButton actionListener="#{operacion.getRegistros}" value="Leer Usuarios"  style="display:inline-block; padding:0.3em 1.2em; margin:0 0.3em 0.3em 0; border-radius:2em; box-sizing: border-box; text-decoration:none; border-style: none ; font-weight:300; color:#FFFFFF; background-color:#4eb5f1; text-align:center; transition: all 0.2s;">
                 <f:ajax execute="" render="users"/>
             </h:commandButton>
+                  
             <h:commandButton actionListener="#{operacion.insertar()}" value="Insertar Usuarios" style="display:inline-block; padding:0.3em 1.2em; margin:0 0.3em 0.3em 0; border-radius:2em; box-sizing: border-box; text-decoration:none; border-style: none ; font-weight:300; color:#FFFFFF; background-color:#4eb5f1; text-align:center; transition: all 0.2s;">
                 <f:ajax execute="txtNombre txtTelefono txtDireccion" render="users"/>
             </h:commandButton>
-                  
-                  <h:commandButton actionListener="#{operacion.getRegistros}" value="Actualizar Usuario"  style="display:inline-block; padding:0.3em 1.2em; margin:0 0.3em 0.3em 0; border-radius:2em; box-sizing: border-box; text-decoration:none; border-style: none ; font-weight:300; color:#FFFFFF; background-color:#4eb5f1; text-align:center; transition: all 0.2s;">
-                <f:ajax execute="" render="users"/>
-            </h:commandButton>
-                  
-                  <h:commandButton actionListener="#{operacion.getRegistros}" value="Eliminar Usuario"  style="display:inline-block; padding:0.3em 1.2em; margin:0 0.3em 0.3em 0; border-radius:2em; box-sizing: border-box; text-decoration:none; border-style: none ; font-weight:300; color:#FFFFFF; background-color:#4eb5f1; text-align:center; transition: all 0.2s;">
-                <f:ajax execute="" render="users"/>
-            </h:commandButton>
+              
               </div>
-           
-              <p:dataTable id="users" var="user" value="#{operacion.registros}" selectionMode="single" rowKey="#{user.userid}" style="margin-bottom: 50px;  ">
-                
-                   
-                <p:column headerText="ID">
-                    <h:outputText value="#{user.userid}" />
-                </p:column>
-                <p:column headerText="Nombre">
-                    <h:outputText value="#{user.nombre}" />
-                </p:column>
+           <h:dataTable value="#{operacion.registros}" var="usuario" id="users" style="margin-top: 20px;" >
+            <h:column>
+                <f:facet name="header">Usuario</f:facet>
+                <h:outputText value="#{usuario.nombre}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Clave</f:facet>
+                <h:outputText value="#{usuario.clave}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Email</f:facet>
+                <h:outputText value="#{usuario.email}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Teléfono Móvil</f:facet>
+                <h:outputText value="#{usuario.telmovil}" />
+            </h:column>
+        </h:dataTable>
+              
+              
 
-                <p:column headerText="Telefono">
-                    <h:outputText value="#{user.telefono}" />
-                </p:column>
 
-                <p:column headerText="Direccion">
-                    <h:outputText value="#{user.direccion}" />
-                </p:column>
-            </p:dataTable>
-            
               
         </h:form>
     </h:body>
