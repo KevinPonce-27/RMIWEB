@@ -15,8 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import org.primefaces.context.RequestContext;
 
@@ -36,8 +38,16 @@ public class Operacion implements Serializable {
     private String usuario;
     private String clave;
     private String email;
+    private String usuarioEliminar;
 
-    
+    public String getUsuarioEliminar() {
+        return usuarioEliminar;
+    }
+
+    public void setUsuarioEliminar(String usuarioEliminar) {
+        this.usuarioEliminar = usuarioEliminar;
+    }
+
     private String telmovil;
     private List<Usuario> registros;
 
@@ -91,13 +101,21 @@ public class Operacion implements Serializable {
         }
     }
 
-    public void eliminar(String usuario) {
-        try {
-            stub.eliminar(usuario);
-        } catch (RemoteException ex) {
-            Logger.getLogger(Operacion.class.getName()).log(Level.SEVERE, null, ex);
+    public void eliminarUsuario() {
+    try {
+        if (usuarioEliminar != null && !usuarioEliminar.isEmpty()) {
+            int resultado = stub.eliminar(usuarioEliminar);
+            if (resultado > 0) {
+                usuarioEliminar = ""; // Limpia el campo después de eliminar
+                RequestContext.getCurrentInstance().execute("PF('successDialog').show();");
+            } else {
+                // Mostrar algún mensaje de error si el usuario no se eliminó correctamente
+            }
         }
+    } catch (RemoteException ex) {
+        Logger.getLogger(Operacion.class.getName()).log(Level.SEVERE, null, ex);
     }
+}
 
     public void actualizar(String usuarioAActualizar, String nuevaClave, String nuevoEmail, String nuevoTelmovil) {
         try {
@@ -163,7 +181,7 @@ public class Operacion implements Serializable {
     public void setClave(String clave) {
         this.clave = clave;
     }
-    
+
     public String getEmail() {
         return email;
     }
@@ -179,12 +197,12 @@ public class Operacion implements Serializable {
     public void setTelmovil(String telmovil) {
         this.telmovil = telmovil;
     }
-    
+
     public void cleanFields() {
-    usuario = "";
-    clave = "";
-    email = "";
-    telmovil = "";
-}
+        usuario = "";
+        clave = "";
+        email = "";
+        telmovil = "";
+    }
 
 }
