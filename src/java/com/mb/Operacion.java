@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -35,6 +36,8 @@ public class Operacion implements Serializable {
     private String usuario;
     private String clave;
     private String email;
+
+    
     private String telmovil;
     private List<Usuario> registros;
 
@@ -79,28 +82,30 @@ public class Operacion implements Serializable {
     public void insertar() throws Exception {
         try {
             stub.insertar(usuario, clave, email, telmovil);
+            //DIALOGO DE ACEPTADO
+            boolean showSuccessDialog = true;
+            RequestContext.getCurrentInstance().execute("PF('successDialog').show(); cleanFields();");
 
         } catch (RemoteException ex) {
             Logger.getLogger(Operacion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void eliminar(String usuarioAEliminar) {
-    try {
-        stub.eliminar(usuarioAEliminar);
-    } catch (RemoteException ex) {
-        Logger.getLogger(Operacion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public void actualizar(String usuarioAActualizar, String nuevaClave, String nuevoEmail, String nuevoTelmovil) {
-    try {
-        stub.actualizar(usuarioAActualizar, nuevaClave, nuevoEmail, nuevoTelmovil);
-    } catch (RemoteException ex) {
-        Logger.getLogger(Operacion.class.getName()).log(Level.SEVERE, null, ex);
+
+    public void eliminar(String usuario) {
+        try {
+            stub.eliminar(usuario);
+        } catch (RemoteException ex) {
+            Logger.getLogger(Operacion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+    public void actualizar(String usuarioAActualizar, String nuevaClave, String nuevoEmail, String nuevoTelmovil) {
+        try {
+            stub.actualizar(usuarioAActualizar, nuevaClave, nuevoEmail, nuevoTelmovil);
+        } catch (RemoteException ex) {
+            Logger.getLogger(Operacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public void getRegistros(ActionEvent actionEvent) throws RemoteException {
         try {
@@ -118,8 +123,7 @@ public class Operacion implements Serializable {
             return null;
         }
     }
-    
-    
+
     public double getOperandoUno() {
         return operandoUno;
     }
@@ -143,5 +147,44 @@ public class Operacion implements Serializable {
     public void setResultado(double resultado) {
         this.resultado = resultado;
     }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getClave() {
+        return clave;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
+    
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelmovil() {
+        return telmovil;
+    }
+
+    public void setTelmovil(String telmovil) {
+        this.telmovil = telmovil;
+    }
+    
+    public void cleanFields() {
+    usuario = "";
+    clave = "";
+    email = "";
+    telmovil = "";
+}
 
 }

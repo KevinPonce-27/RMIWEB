@@ -11,18 +11,20 @@ package com.mb;
  *
  * @author Cristhian
  */
+
 public class Usuario {
-     private String nombre,telefono, direccion;
+    private String nombre;
+    private String clave;
+    private String email;
+    private String telmovil;
 
-    public Usuario(String nombre, String telefono, String direccion) {
+    public Usuario(String nombre, String clave, String email, String telmovil) {
         this.nombre = nombre;
-        this.telefono = telefono;
-        this.direccion = direccion;
+        this.clave = clave;
+        this.email = email;
+        this.telmovil = telmovil;
     }
 
-    public Usuario() {
-    }
-    
     public String getNombre() {
         return nombre;
     }
@@ -31,23 +33,29 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String getClave() {
+        return clave;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setClave(String clave) {
+        this.clave = clave;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getEmail() {
+        return email;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
+    public String getTelmovil() {
+        return telmovil;
+    }
 
+    public void setTelmovil(String telmovil) {
+        this.telmovil = telmovil;
+    }
 
 }
  
